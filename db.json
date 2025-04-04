@@ -1,0 +1,93 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Wireless Headphones",
+        "serialNumber": "WH-2023-001",
+        "price": 149.99,
+        "status": "in-stock"
+      },
+      {
+        "id": 2,
+        "name": "Smartphone XS Pro",
+        "serialNumber": "SP-2023-002",
+        "price": 899.99,
+        "status": "in-stock"
+      },
+      {
+        "id": 3,
+        "name": "Laptop UltraThin",
+        "serialNumber": "LT-2023-003",
+        "price": 1299.99,
+        "status": "in-stock"
+      },
+      {
+        "id": 4,
+        "name": "Smart Watch Fitness",
+        "serialNumber": "SW-2023-004",
+        "price": 249.99,
+        "status": "sold"
+      },
+      {
+        "id": 5,
+        "name": "Bluetooth Speaker",
+        "serialNumber": "BS-2023-005",
+        "price": 79.99,
+        "status": "in-stock"
+      },
+      {
+        "id": 6,
+        "name": "Wireless Mouse",
+        "serialNumber": "WM-2023-006",
+        "price": 49.99,
+        "status": "in-stock"
+      },
+      {
+        "id": 7,
+        "name": "Gaming Console Pro",
+        "serialNumber": "GC-2023-007",
+        "price": 499.99,
+        "status": "sold"
+      },
+      {
+        "id": 8,
+        "name": "Digital Camera 4K",
+        "serialNumber": "DC-2023-008",
+        "price": 699.99,
+        "status": "in-stock"
+      },
+      {
+        "id": 9,
+        "name": "Tablet Mini",
+        "serialNumber": "TM-2023-009",
+        "price": 349.99,
+        "status": "in-stock"
+      },
+      {
+        "id": 10,
+        "name": "Smart TV 55-inch",
+        "serialNumber": "TV-2023-010",
+        "price": 799.99,
+        "status": "sold"
+      }
+    ],
+    "notifications": [
+      {
+        "id": 1,
+        "message": "System started",
+        "type": "alert",
+        "timestamp": "2025-04-04T10:00:00.000Z"
+      },
+      {
+        "id": 2,
+        "message": "Product sold: Smart Watch Fitness (SW-2023-004)",
+        "type": "sale",
+        "timestamp": "2025-04-04T10:15:23.000Z"
+      },
+      {
+        "id": 3,
+        "message": "Product sold: Gaming Console Pro (GC-2023-007)",
+        "type": "sale"
+      }
+    ]
+    }

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetailStockScan-Pro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-barcode"></i>
+                <h1>RetailScan Pro</h1>
+            </div>
+            <div class="user-info">
+                <span class="store-name">Store #1482</span>
+                <span class="user-name"><i class="fas fa-user-circle"></i> Admin</span>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-box"></i>
+                </div>
+                <div class="stat-details">
+                    <div class="stat-value" id="total-products">0</div>
+                    <div class="stat-label">Total Products</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-tags"></i>
+                </div>
+                <div class="stat-details">
+                    <div class="stat-value" id="products-sold">0</div>
+                    <div class="stat-label">Products Sold</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div class="stat-details">
+                    <div class="stat-value" id="total-sales">$0</div>
+                    <div class="stat-label">Total Sales</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="stat-details">
+                    <div class="stat-value" id="conversion-rate">0%</div>
+                    <div class="stat-label">Conversion Rate</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dashboard">
+            <div class="left-panel">
+                <div class="scanner-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-qrcode"></i> Scan Product</h2>
+                        <div class="status-indicator" id="scanner-status">
+                            <span class="status-dot offline"></span>
+                            <span class="status-text">Scanner Offline</span>
+                        </div>
+                    </div>
+                    
+                    <div class="scanner-input">
+                        <input type="text" id="serial-input" placeholder="Enter serial number or scan barcode">
+                        <button id="manual-scan-btn"><i class="fas fa-search"></i> Scan</button>
+                    </div>
+                    
+                    <div class="camera-scanner">
+                        <div id="scanner-view">
+                            <video id="video-preview" autoplay playsinline></video>
+                            <div class="scan-overlay">
+                                <div class="scan-line"></div>
+                            </div>
+                        </div>
+                        <div class="scanner-controls">
+                            <button class="btn btn-primary" id="start-camera"><i class="fas fa-camera"></i> Start Camera</button>
+                            <button class="btn btn-danger" id="stop-camera"><i class="fas fa-stop-circle"></i> Stop Camera</button>
+                        </div>
+                    </div>
+                    
+                    <div class="recently-scanned" id="recently-scanned">
+                        <h3>Recently Scanned</h3>
+                        <div class="recent-items" id="recent-items">
+                            <!-- Recent items will appear here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="notification-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-bell"></i> Notifications</h2>
+                        <button class="btn btn-sm" id="clear-notifications"><i class="fas fa-trash"></i> Clear All</button>
+                    </div>
+                    <div class="notification-list" id="notification-list">
+                        <!-- Notifications will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-panel">
+                <div class="product-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-clipboard-list"></i> Product List</h2>
+                        <div class="view-controls">
+                            <button class="view-btn active" data-view="all">All</button>
+                            <button class="view-btn" data-view="in-stock">In Stock</button>
+                            <button class="view-btn" data-view="sold">Sold</button>
+                        </div>
+                    </div>
+                    
+                    <div class="search-bar">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="product-search" placeholder="Search products by name or serial number...">
+                        <button class="btn btn-sm" id="reset-search"><i class="fas fa-times"></i></button>
+                    </div>
+                    
+                    <div class="product-list-wrapper">
+                        <div class="product-list" id="product-list">
+                            <!-- Products will be loaded here dynamically -->
+                            <div class="loading">Loading products...</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-pagination">
+                        <button class="btn btn-sm" id="prev-page" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+                        <span class="pagination-info">Page <span id="current-page">1</span> of <span id="total-pages">1</span></span>
+                        <button class="btn btn-sm" id="next-page"><i class="fas fa-chevron-right"></i> Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Product Details Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-product-name">Product Details</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-product-details">
+                <!-- Product details will be inserted here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" id="modal-close">Close</button>
+                <button class="btn btn-primary" id="modal-action">Mark as Sold</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 RetailScan Pro. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Help</a>
+                <a href="#">Support</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
